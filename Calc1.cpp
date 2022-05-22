@@ -1,29 +1,30 @@
 #include <iostream>
 using namespace std;
 
-// int calculate(a, b, op);
-int catch_(int a, int b);
 
+void catch_(double *nums);
+void calculate(double *nums);
 
 int main(){
 	cout << "Loading..." << endl;
-	int num1(0);
-	int num2(0);
-	int answer;
-    cout << "Calc1 v0.1!" << endl;
-    num2, num1 = catch_(num1, num2);
-    cout << num1 << endl;
-    cout << num2 << endl;
+    cout << "Calc1 v0.2!" << endl;
+    char d;
+    do{
+	    double *nums = new double[2];
+	    catch_(nums);
+	    calculate(nums);
+	    cout << "Again? y/n" << endl;
+	    cin >> d;
+	}while(d != 'n');
     return 0;
 }
 
-int catch_(int a, int b){
+void catch_(double* nums){
     bool succ;
-    cout << "Debag! \n";
     succ = false;
     cout << "Write first number: " << endl;
     do{ // First num
-        cin >> a;
+        cin >> nums[0];
 	    if (cin.fail()){
 	            cin.clear();
 	            cin.ignore(32767, '\n');
@@ -34,12 +35,10 @@ int catch_(int a, int b){
 	    }
 
     } while(succ == false);
-    cout << "A:" << endl;
-    cout << a << endl;
     succ = false; // Second num
     cout << "Write second number: " << endl;
 	do{
-        cin >> b;
+        cin >> nums[1];
 	    if (cin.fail()){
 	            cin.clear();
 	            cin.ignore(32767, '\n');
@@ -49,34 +48,35 @@ int catch_(int a, int b){
 	    	succ = true;
 	    }
     } while(succ == false);
-    
-	return a, b;
 }
 
 
-/*
-int calculate(int a, int b, char op){
-	int ans;
-    if (op == '+'){
-    	ans = a + b;
-    }
-    // else if
-	return ans;
+
+void calculate(double *nums){
+	bool succ;
+	char op;
+	double ans;
+	succ = false;
+	cout << "Write operation: " << endl; 
+	do{
+	    cin >> op;
+		if (cin.fail()){
+		            cin.clear();
+		            cin.ignore(32767, '\n');
+		            cout << "ERROR!" << endl;
+		}
+		else if(op == '+' || op == '-' || op == '*' || op == '/'){
+		    succ = true;
+		}
+		else{
+		    cout << "Chouse + - / *:" << endl;
+		}
+	} while(succ == false);
+    if (op == '+'){ans = nums[0] + nums[1];}
+    else if (op == '-'){ans = nums[0] - nums[1];}
+    else if (op == '*'){ans = nums[0] * nums[1];}
+    else if (op == '/' && nums[1] != 0){ans = nums[0] / nums[1];}
+    else{ans = 0;}
+    cout << ans << endl;
 }
-succ = false;
-    cout << "Write operation: " << endl; 
-    do{
-        cin >> op;
-	    if (cin.fail()){
-	            cin.clear();
-	            cin.ignore(32767, '\n');
-	            cout << "ERROR!" << endl;
-	        }
-	    else if(op == '+' || op == '-' || op == '*' || op == '/'){
-	    	succ = true;
-	    }
-	    else{
-	    	cout << "Chouse + - / *:" << endl;
-	    }
-    } while(succ == false);
-*/
+
