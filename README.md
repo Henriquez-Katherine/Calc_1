@@ -1,4 +1,4 @@
 # Calc_1
 
 Hi, People.
-That my first on GitHub program on Python and others.
+This is my first program on Github. I wrote it with python and C++. Well, that's all
